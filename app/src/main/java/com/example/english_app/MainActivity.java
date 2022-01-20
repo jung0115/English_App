@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mArrayList = new ArrayList<>();
 
         GetData task = new GetData(); //AsyncTask 객체 생성
-        task.execute("https://circlezero.loca.lt/DictionaryApp/dbtest.php"); //스레드 실행 ("A")
+        task.execute("https://circlezero.loca.lt/DictionaryApp/dbtest.php"); //스레드 실행 ("A") 서버
     }
     //스레드(thread): 프로세스(process) 내에서 실제로 작업을 수행하는 주체.
     //AsyncTask는 자바에서 필수로 사용하는 기능이 모두 구축된 가장 간편한 스레드 클래스라고 볼 수 있음.
