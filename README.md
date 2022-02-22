@@ -9,11 +9,11 @@
 ### 개발 환경 및 언어
 **Android App**  
 &#45; Android Studio  
-&#45; Java
+&#45; Java  
 **Database**  
 &#45; Mysql Workbench  
 &#45; php
-&#45; Visual Studio Code
+&#45; Visual Studio Code  
 **AI**  
 &#45; python  
 &#45; Word2Vec  
