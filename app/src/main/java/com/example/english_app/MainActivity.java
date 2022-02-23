@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -41,14 +43,43 @@ public class MainActivity extends AppCompatActivity {
     String mJsonString;
     Button addButton;
 
+
     Button korSortToggleBtn, engSortToggleBtn, idClearBtn;
-    private boolean korSortToggle, engSortToggle;
+    private boolean korSortToggle, engSortToggle, menuShowToggle=false;
+
 
     private static boolean idClearFlag = true;
 
     SearchView searchView;
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //false가 보이지 않는 상태
+        if (menuShowToggle==false){
+            menuShowToggle = true;
+            showMenu();
+        }
+        else {
+            menuShowToggle = false;
+            hideMenu();
+        }
+        return true;
+    }
+    private void showMenu(){
+        korSortToggleBtn.setVisibility(View.VISIBLE);
+        engSortToggleBtn.setVisibility(View.VISIBLE);
+        idClearBtn.setVisibility(View.VISIBLE);
+    }
+    private void hideMenu(){
+        korSortToggleBtn.setVisibility(View.GONE);
+        engSortToggleBtn.setVisibility(View.GONE);
+        idClearBtn.setVisibility(View.GONE);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         korSortToggle = true;
         engSortToggle = true;
-
         InitializeView();
         SetListener();
 
@@ -97,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         korSortToggleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +159,10 @@ public class MainActivity extends AppCompatActivity {
                 task.execute(Constant.READ);
             }
         });
+
+        korSortToggleBtn.setVisibility(View.GONE);
+        engSortToggleBtn.setVisibility(View.GONE);
+        idClearBtn.setVisibility(View.GONE);
 
 
         // 리스트에서 단어를 클릭 시 한글 메세지가 출력되도록 하는 onClick 함수
@@ -245,3 +280,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+
