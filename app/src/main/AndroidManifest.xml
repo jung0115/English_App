@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.english_app">
 
-    /*인터넷 접근 허용 권한*/
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.English_App"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WordInfo"
+            android:exported="false" />
+        <activity
+            android:name=".WordInputForm"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

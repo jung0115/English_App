@@ -1,16 +1,22 @@
 package com.example.english_app;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +25,13 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+// import android.widget.Toolbar; 이거를 아래거로 변경해야함
+
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +39,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 
-public class MainActivity extends AppCompatActivity {
+// View.OnClickListener를 상속받아
+// onClick 함수로 클릭 시 리스너를 한꺼번에 구현함
+public class MainActivity extends BaseActivity {
+    Context context = this;
+
     private static String TAG = "phptest_MainActivity";
 
     private static final String TAG_JSON = "dictionary";
@@ -44,13 +59,20 @@ public class MainActivity extends AppCompatActivity {
     Button addButton;
 
 
-    Button korSortToggleBtn, engSortToggleBtn, idClearBtn;
+    TextView korSortToggleBtn, engSortToggleBtn, idClearBtn;
     private boolean korSortToggle, engSortToggle, menuShowToggle=false;
 
 
     private static boolean idClearFlag = true;
 
     SearchView searchView;
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // 기존 메뉴 버튼 코드
+    /*
+    private DrawerLayout drawerLayout;
+    private View sliderView;
+    Button closeSliderBtn;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,15 +93,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
     private void showMenu(){
-        korSortToggleBtn.setVisibility(View.VISIBLE);
-        engSortToggleBtn.setVisibility(View.VISIBLE);
-        idClearBtn.setVisibility(View.VISIBLE);
+        drawerLayout.openDrawer(sliderView);
     }
     private void hideMenu(){
-        korSortToggleBtn.setVisibility(View.GONE);
-        engSortToggleBtn.setVisibility(View.GONE);
-        idClearBtn.setVisibility(View.GONE);
+        drawerLayout.closeDrawers();
     }
+    */
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,10 +123,13 @@ public class MainActivity extends AppCompatActivity {
         InitializeView();
         SetListener();
 
+
+
         // Read 구현, 메인화면에 단어들을 출력
         GetData task = new GetData();
         task.execute(Constant.READ);
     }
+
 
     // 컴포넌트 id 초기화
     private void InitializeView(){
@@ -114,58 +142,55 @@ public class MainActivity extends AppCompatActivity {
         idClearBtn = findViewById(R.id.id_clear_btn);
 
         searchView = findViewById(R.id.search_view);
+
+        // 슬라이드메뉴
+        //drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //sliderView = (View) findViewById(R.id.slider);
+        //closeSliderBtn = (Button) findViewById(R.id.closeSliderBtn);
     }
 
     // 컴포넌트 리스너 초기화
     private void SetListener(){
-        addButton.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, WordInputForm.class);
-                intent.putExtra("editFlag", false);
-                startActivity(intent);
+                switch (view.getId()){
+                    case R.id.add_button:
+                        Intent intent = new Intent(MainActivity.this, WordInputForm.class);
+                        intent.putExtra("editFlag", false);
+                        startActivity(intent);
+                        break;
+                    case R.id.kor_sort_toggle_btn:
+                        SortTable("kor", korSortToggle);
+                        korSortToggle = !korSortToggle;
+                        engSortToggle = true;
+                        break;
+                    case R.id.eng_sort_toggle_btn:
+                        SortTable("eng", engSortToggle);
+                        engSortToggle = !engSortToggle;
+                        korSortToggle = true;
+                        break;
+                    case R.id.id_clear_btn:
+                        // 데이터베이스 단어들의 ID를 1부터 ~~~로 초기화하는 작업
+                        PostRequestHandler postRequestHandler = new PostRequestHandler(Constant.IDCLEAR, new HashMap<>());
+                        postRequestHandler.execute();
+                        idClearFlag = false;
+                        SortTable("id", true);
+                        GetData task = new GetData();
+                        task.execute(Constant.READ);
+                        break;
+                }
             }
-        });
+        };
+        addButton.setOnClickListener(onClickListener);
+        korSortToggleBtn.setOnClickListener(onClickListener);
+        engSortToggleBtn.setOnClickListener(onClickListener);
+        idClearBtn.setOnClickListener(onClickListener);
+        //closeSliderBtn.setOnClickListener(onClickListener);
 
 
-        korSortToggleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SortTable("kor", korSortToggle);
-                korSortToggle = !korSortToggle;
-                engSortToggle = true;
-            }
-        });
 
-        engSortToggleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SortTable("eng", engSortToggle);
-                engSortToggle = !engSortToggle;
-                korSortToggle = true;
-            }
-        });
-
-
-        idClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 데이터베이스 단어들의 ID를 1부터 ~~~로 초기화하는 작업
-                PostRequestHandler postRequestHandler = new PostRequestHandler(Constant.IDCLEAR, new HashMap<>());
-                postRequestHandler.execute();
-                idClearFlag = false;
-                SortTable("id", true);
-                GetData task = new GetData();
-                task.execute(Constant.READ);
-            }
-        });
-
-        korSortToggleBtn.setVisibility(View.GONE);
-        engSortToggleBtn.setVisibility(View.GONE);
-        idClearBtn.setVisibility(View.GONE);
-
-
-        // 리스트에서 단어를 클릭 시 한글 메세지가 출력되도록 하는 onClick 함수
+        // 리스트에서 단어를 클릭할 때의 onClick 함수
         mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l_position) {
@@ -175,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 // mArrayList의 형식인 ArrayList<HashMap<String,String>>에서 HashMap 이다.
                 // .getItem 후에 형변환을 해줘야 함.
                 final HashMap<String,String> clickedWord = (HashMap<String,String>)adapterView.getAdapter().getItem(position);
-                Toast.makeText(MainActivity.this, "" + clickedWord.get("kor"),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "" + clickedWord.get("kor"),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, WordInfo.class);
                 intent.putExtra("word", clickedWord);
                 startActivity(intent);
@@ -198,6 +223,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     // 단어 출력
     private void showData(ArrayList<HashMap<String, String>> data, ArrayList<String> tagList, int[] idList){

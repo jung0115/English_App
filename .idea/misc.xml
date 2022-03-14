@@ -3,6 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.256" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1885" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.256" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_base.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_base_login.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_login.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_signin.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_word_info.xml" value="0.33" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/activity_word_input_form.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/appbar.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/header.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/item_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/navi_header.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/navi_menu.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/rslider.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/sidebar.xml" value="0.3515625" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/slider.xml" value="0.3515625" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/test1.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/layout/test2.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/appbar.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/drawerlayout.xml" value="0.3515625" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/login_navi_menu.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/logout_navi_menu.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/menu.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/navi_menu.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/navi_menu1.xml" value="0.30055579307396324" />
+        <entry key="..\:/AndroidStudio/English_App/app/src/main/res/menu/side_menu.xml" value="0.36614583333333334" />
         <entry key="..\:/English_App/app/src/main/res/layout/activity_word_info.xml" value="0.14447463768115942" />
         <entry key="..\:/English_App/app/src/main/res/layout/activity_word_info_form.xml" value="0.14447463768115942" />
         <entry key="..\:/English_App/app/src/main/res/layout/activity_word_input_form.xml" value="0.25364583333333335" />
