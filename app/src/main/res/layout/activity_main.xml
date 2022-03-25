@@ -67,6 +67,40 @@
                 android:padding="5dp"
                 android:id="@+id/listView_main_list" />
 
+            //여기부터 연관단어 검색
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Word :"
+                    android:textSize="25dp"
+                    tools:text="Word    :" />
+
+                <EditText
+                    android:id="@+id/word_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/connect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="검색" />
+            </LinearLayout>
+            //여기까지 연관단어 검색
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
