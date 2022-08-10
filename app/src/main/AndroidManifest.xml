@@ -2,7 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.english_app">
 
-    /*인터넷 접근 허용 권한*/
+    //연관단어 탐색용 TCP/IP 서버 접속에 필요한 부분
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,6 +20,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.English_App"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WordInfo"
+            android:exported="false" />
+        <activity
+            android:name=".WordInputForm"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

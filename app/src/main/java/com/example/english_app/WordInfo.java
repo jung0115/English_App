@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-public class WordInfo extends AppCompatActivity {
+public class WordInfo extends BaseActivity {
     HashMap<String,String> word;
     TextView korText, engText;
     Button deleteButton, editButton, backButton;

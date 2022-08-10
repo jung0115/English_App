@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import java.util.HashMap;
 
-public class WordInputForm extends AppCompatActivity {
+public class WordInputForm extends BaseActivity {
     boolean editFlag = false;
     EditText korText,engText;
     Button okButton,exitButton;
